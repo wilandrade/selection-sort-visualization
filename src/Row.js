@@ -20,8 +20,9 @@ class Row {
     this.el = rowEl;
   }
 
-  addToTable() {
-    document.getElementById("board").appendChild(this.el);
+  addToElement(el) {
+    if (!el) el = document.getElementById("board");
+    el.appendChild(this.el);
   }
 }
 
@@ -35,7 +36,7 @@ class RowManager {
   addRow(units) {
     const newRow = new Row(units);
     this.rows.push(newRow);
-    this.rows[this.rows.length - 1].addToTable();
+    this.rows[this.rows.length - 1].addToElement();
   }
 
   clearRows() {
@@ -50,7 +51,7 @@ class RowManager {
   updateRows() {
     this.clearRows();
     this.rows.forEach((row) => {
-      row.addToTable();
+      row.addToElement(document.getElementById("board"));
     });
   }
 }

@@ -33,7 +33,40 @@ function addRow(event) {
   rowManager.addRow(totalUnits);
 }
 
-const form = document.querySelector("form");
+function refreshHistoryBoard() {
+  let historyBoard = document.getElementById("history");
+  historyBoard.innerHTML = "";
+
+  let historyStates = rowManager.sort.boardStates.map((boardState) => {
+    return boardState.rows;
+  });
+
+  let currentStep = 0;
+  historyStates.forEach((state) => {
+    let entry = document.createElement("li");
+    let entryLabel = document.createElement("label");
+    entryLabel.innerHTML = "Step: " + currentStep++;
+    entry.appendChild(entryLabel);
+    let stateDiv = document.createElement("div");
+    stateDiv.innerHTML = JSON.stringify(state);
+    historyBoard.appendChild(entry);
+    historyBoard.appendChild(stateDiv);
+  });
+  console.log(historyStates);
+}
+
+function sortRow(event) {
+  event.preventDefault();
+  rowManager.sortRows();
+  refreshHistoryBoard();
+}
+
+const addRowForm = document.getElementById("add-row-btn");
 document.addEventListener("DOMContentLoaded", () => {
-  form.onsubmit = addRow;
+  addRowForm.onsubmit = addRow;
+});
+
+const sortRowForm = document.getElementById("sort-row-btn");
+document.addEventListener("DOMContentLoaded", () => {
+  sortRowForm.onsubmit = sortRow;
 });
