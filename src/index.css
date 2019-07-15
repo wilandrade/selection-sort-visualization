@@ -1,3 +1,41 @@
 body {
-  background-color: #55b491;
+  background-color: white;
+  color: #026873;
+}
+
+.unit-row {
+  display: table;
+  margin: 3px;
+  padding: 3px;
+}
+
+.unit-block {
+  float: left;
+  height: 60px;
+  width: 60px;
+  margin-left: 3px;
+}
+
+.unit-block:first-child {
+  margin-left: 0px;
+}
+
+.bg-0 {
+  background-color: #026873;
+}
+
+.bg-1 {
+  background-color: #03a6a6;
+}
+
+.bg-2 {
+  background-color: #f2b28d;
+}
+
+.bg-3 {
+  background-color: #d96e48;
+}
+
+.bg-4 {
+  background-color: #bf4545;
 }

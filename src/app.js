@@ -8,9 +8,9 @@ const Sort = require("./Sort");
 
 // A link to our styles!
 require("./index.css");
-
-const sort = new Sort();
-sort.sort();
+const arrToBeSorted = [3, 2, 1, 4];
+const sort = new Sort(arrToBeSorted);
+console.log(sort.sort());
 
 function createCheesyTitle(slogan) {
   const container = document.createElement("h1");
@@ -19,7 +19,7 @@ function createCheesyTitle(slogan) {
   return container;
 }
 
-const title = createCheesyTitle(sort.returnValue("Re-Engineer Yourself"));
+const title = createCheesyTitle(sort.returnValue("Selection Sort"));
 document.getElementById("title").appendChild(title);
 
 /*
