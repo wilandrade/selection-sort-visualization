@@ -4,13 +4,11 @@
 */
 
 // How can we use require here if it's frontend? We can thank webpack.
-const Sort = require("./Sort");
+const RowManager = require("./Row");
 
 // A link to our styles!
 require("./index.css");
-const arrToBeSorted = [3, 2, 1, 4];
-const sort = new Sort(arrToBeSorted);
-console.log(sort.sort());
+const rowManager = new RowManager();
 
 function createCheesyTitle(slogan) {
   const container = document.createElement("h1");
@@ -19,7 +17,7 @@ function createCheesyTitle(slogan) {
   return container;
 }
 
-const title = createCheesyTitle(sort.returnValue("Selection Sort"));
+const title = createCheesyTitle("Selection Sort");
 document.getElementById("title").appendChild(title);
 
 /*
@@ -29,12 +27,13 @@ document.getElementById("title").appendChild(title);
     In our `index.html` page, we have a short form.
     Here is the code that talks to it.
   */
-function changeTitle(event) {
+function addRow(event) {
   event.preventDefault();
-  // console.log('What is an event?', event);
+  const totalUnits = Math.floor(Math.random() * 5) + 1;
+  rowManager.addRow(totalUnits);
 }
 
 const form = document.querySelector("form");
 document.addEventListener("DOMContentLoaded", () => {
-  form.onsubmit = changeTitle;
+  form.onsubmit = addRow;
 });

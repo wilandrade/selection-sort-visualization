@@ -9,25 +9,11 @@
   <body>
     <div id="title"></div>
     <form>
-      <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Engineering?" />
-      <input type="submit" />
-
-      <div class="unit-row">
-        <div class="bg-0 unit-block"></div>
-        <div class="bg-1 unit-block"></div>
-        <div class="bg-2 unit-block"></div>
-        <div class="bg-3 unit-block"></div>
-        <div class="bg-4 unit-block"></div>
-      </div>
-      <div class="unit-row">
-        <div class="bg-0 unit-block"></div>
-        <div class="bg-1 unit-block"></div>
-        <div class="bg-2 unit-block"></div>
-        <div class="bg-3 unit-block"></div>
-        <div class="bg-4 unit-block"></div>
-      </div>
+      <label for="name">Click to generate new row</label>
+      <br /><input id="add-row-btn" type="submit" />
     </form>
+
+    <section id="board"></section>
     <!--
     Where is this public/bundle.js file coming from?
     It comes from our trusty friend, webpack.
