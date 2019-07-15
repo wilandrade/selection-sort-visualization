@@ -16,11 +16,12 @@ body {
 }
 
 #history {
+  padding: 30px;
   margin-top: 20px;
   overflow-y: scroll;
   width: 350px;
-  min-height: 350px;
-  height: 350px;
+  min-height: 150px;
+  height: 150px;
   -webkit-box-shadow: 5px 6px 18px -5px rgba(104, 107, 105, 1);
   -moz-box-shadow: 5px 6px 18px -5px rgba(104, 107, 105, 1);
   box-shadow: 5px 6px 18px -5px rgba(104, 107, 105, 1);
