@@ -3,23 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Code Chrysalis</title>
+    <title>Selection Sort - Example</title>
   </head>
 
   <body>
-    <div id="title"></div>
-    <form id="add-row-btn">
-      <label>Click to generate new row</label>
-      <br /><input type="submit" />
-    </form>
-    <br /><br />
-    <form id="sort-row-btn">
-      <label>Click to sort rows</label>
-      <br /><input type="submit" />
-    </form>
+    <section class="container">
+      <div id="title"></div>
+      <form id="add-row-btn">
+        <label>Click to generate new row</label>
+        <br /><input type="submit" />
+      </form>
+      <br /><br />
+      <form id="sort-row-btn">
+        <label>Click to sort rows</label>
+        <br /><input type="submit" />
+      </form>
+      <section id="board"></section>
+    </section>
+    <h1>HISTORY</h1>
+    <h3>
+      <span class="yellow">Current Min</span>
+      <span class="target">Index Being Checked</span>
+    </h3>
+    <section id="history"></section>
 
-    <section id="board"></section>
-    <section id="history">test</section>
     <!--
     Where is this public/bundle.js file coming from?
     It comes from our trusty friend, webpack.

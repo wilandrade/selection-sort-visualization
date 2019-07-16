@@ -36,7 +36,8 @@ class RowManager {
   addRow(units) {
     const newRow = new Row(units);
     this.rows.push(newRow);
-    this.rows[this.rows.length - 1].addToElement();
+    const boardEl = document.getElementById("board");
+    this.rows[this.rows.length - 1].addToElement(boardEl);
   }
 
   clearRows() {

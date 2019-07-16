@@ -1,8 +1,9 @@
 class BoardState {
-  constructor(rows, indexA, indexB) {
+  constructor(rows, indexA, indexB, isSwap = false) {
     this.rows = rows.slice();
     this.indexA = indexA;
     this.indexB = indexB;
+    this.isSwap = isSwap;
   }
 }
 
@@ -16,8 +17,8 @@ class SomeKindOfSort {
     this.array = array;
   }
 
-  _takeSnapshot(rows, i, j) {
-    this.boardStates.push(new BoardState(rows, i, j));
+  _takeSnapshot(rows, i, j, isSwap = false) {
+    this.boardStates.push(new BoardState(rows, i, j, isSwap));
   }
 
   //swap array values in this.array
@@ -29,17 +30,28 @@ class SomeKindOfSort {
 
   sort() {
     this.boardStates = [];
-    this._takeSnapshot(this.array.map((row) => row.units), 0, 0);
     //sort with selection sort
     for (let i = 0; i < this.array.length; i++) {
       let minIndex = i;
-      for (let j = i; j < this.array.length; j++) {
+      for (let j = i + 1; j < this.array.length; j++) {
+        this._takeSnapshot(this.array.map((row) => row.units), minIndex, j);
         if (this.evalFunc(this.array[j]) < this.evalFunc(this.array[minIndex]))
           minIndex = j;
       }
       if (i !== minIndex) {
+        this._takeSnapshot(
+          this.array.map((row) => row.units),
+          i,
+          minIndex,
+          true
+        );
         this._swap(i, minIndex);
-        this._takeSnapshot(this.array.map((row) => row.units), i, minIndex);
+        this._takeSnapshot(
+          this.array.map((row) => row.units),
+          minIndex,
+          i,
+          true
+        );
       }
     }
 

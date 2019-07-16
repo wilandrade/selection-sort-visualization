@@ -34,25 +34,55 @@ function addRow(event) {
 }
 
 function refreshHistoryBoard() {
+  //set this into variable so we can modify it and create a delay for following
+  let intervalTime = 0;
+  let addSnapShot = (boardState, isAnimatable = true) => {
+    intervalTime += 500;
+    const snapshot = document.createElement("div");
+    snapshot.className = "snapshot";
+
+    boardState.rows.forEach((curRow, i) => {
+      const rowEl = document.createElement("div");
+      rowEl.className = "unit-row";
+      if (boardState.indexB !== boardState.indexA) {
+        if (boardState.indexA === i) {
+          rowEl.style.backgroundColor = "yellow";
+          if (isAnimatable) {
+            setTimeout(() => {
+              rowEl.className += " fade-in";
+            }, intervalTime);
+          }
+        }
+        if (boardState.indexB === i) {
+          rowEl.style.backgroundColor = "#F2844F";
+          if (isAnimatable) {
+            setTimeout(() => {
+              rowEl.className += " fade-in";
+            }, intervalTime);
+          }
+        }
+      }
+
+      for (let i = 0; i < curRow; i++) {
+        let block = document.createElement("div");
+        block.className = "unit-block";
+        rowEl.appendChild(block);
+      }
+
+      if (isAnimatable) {
+        snapshot.className += " is-swap";
+      }
+      snapshot.appendChild(rowEl);
+      document.getElementById("history").appendChild(snapshot);
+    });
+  };
+
   let historyBoard = document.getElementById("history");
   historyBoard.innerHTML = "";
 
-  let historyStates = rowManager.sort.boardStates.map((boardState) => {
-    return boardState.rows;
+  rowManager.sort.boardStates.forEach((boardState) => {
+    addSnapShot(boardState, boardState.isSwap ? true : false);
   });
-
-  let currentStep = 0;
-  historyStates.forEach((state) => {
-    let entry = document.createElement("li");
-    let entryLabel = document.createElement("label");
-    entryLabel.innerHTML = "Step: " + currentStep++;
-    entry.appendChild(entryLabel);
-    let stateDiv = document.createElement("div");
-    stateDiv.innerHTML = JSON.stringify(state);
-    historyBoard.appendChild(entry);
-    historyBoard.appendChild(stateDiv);
-  });
-  console.log(historyStates);
 }
 
 function sortRow(event) {
